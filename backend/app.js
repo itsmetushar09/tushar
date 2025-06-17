@@ -16,16 +16,10 @@ connectDB()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: function(origin, callback) {
-        if (!origin || 
-            origin.startsWith(process.env.FRONTEND_URL)) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    },
-    credentials: true
+  origin: process.env.FRONTEND_URL,
+  credentials: true
 }));
+
 
 
   app.use('/user', userRouter)
